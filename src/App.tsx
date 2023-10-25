@@ -12,6 +12,8 @@ import "@react-page/editor/lib/index.css";
 import type { CellPlugin } from "@react-page/editor";
 
 import FormPlugin from "./components/Form.tsx";
+import RightPlugin from "./components/Right.tsx";
+import LeftPlugin from "./components/Left.tsx";
 
 type Data = {
   title: string;
@@ -87,15 +89,20 @@ const CustomConentPluginTwitter: CellPlugin<Data> = {
   ],
 };
 
-const cellPlugins = [CustomConentPluginTwitter, FormPlugin];
+const cellPlugins = [
+  CustomConentPluginTwitter,
+  FormPlugin,
+  RightPlugin,
+  LeftPlugin,
+];
 
 const App = () => {
-  const getValue = JSON.parse(localStorage.getItem("value") || "");
-  const [value, setValue] = useState<Value | null>(getValue);
+  // const getValue = JSON.parse(localStorage.getItem("value") || "");
+  const [value, setValue] = useState<Value | null>(null);
 
   const handleChange = (value: Value) => {
     setValue(() => value);
-    localStorage.setItem("value", JSON.stringify(value));
+    // localStorage.setItem("value", JSON.stringify(value));
   };
 
   return (

@@ -28,8 +28,7 @@ const FormPlugin: CellPlugin<Data> = {
         <Label htmlFor="description">Description:</Label>
         <EditorCore />
 
-        <Button name="btn">Hello</Button>
-        <button>main button</button>
+        <Button name="btn">Create</Button>
         {/* <Link
           to={"/"}
           className="btn px-5 my-3 custom-button align-items-center justify-content-between"
