@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 import Editor, { ColorPickerField } from "@react-page/editor";
@@ -14,6 +14,7 @@ import type { CellPlugin } from "@react-page/editor";
 import FormPlugin from "./components/Form.tsx";
 import RightPlugin from "./components/Right.tsx";
 import LeftPlugin from "./components/Left.tsx";
+import NavbarPlugin from "./components/Navbar.tsx";
 
 type Data = {
   title: string;
@@ -94,6 +95,7 @@ const cellPlugins = [
   FormPlugin,
   RightPlugin,
   LeftPlugin,
+  NavbarPlugin,
 ];
 
 const App = () => {
@@ -105,10 +107,31 @@ const App = () => {
     // localStorage.setItem("value", JSON.stringify(value));
   };
 
+  // useEffect(() => {
+  //   fetch(
+  //     "https://jira-test.innovura.io/rest/community/1.0/portal/ISD/statuses"
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // }, []);
+
   return (
-    <>
-      <Editor cellPlugins={cellPlugins} value={value} onChange={handleChange} />
-    </>
+    <main
+      style={{
+        maxWidth: 1200,
+        margin: "0 auto",
+        display: "flex",
+        flexGrow: 1,
+        flexWrap: "wrap",
+      }}
+    >
+      <Editor
+        cellPlugins={cellPlugins}
+        value={value}
+        onChange={handleChange}
+        // sidebarPosition=""
+      />
+    </main>
   );
 };
 

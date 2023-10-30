@@ -10,7 +10,7 @@ type Data = {
 
 const FormPlugin: CellPlugin<Data> = {
   Renderer: ({ data }) => (
-    <div style={{ margin: "60px" }}>
+    <div style={{ margin: "0px" }}>
       <div className="filterByStatus ">
         <h4 className="text-uppercase text-secondary">filter by status</h4>
         <ul className="list-group list-group-flush ">

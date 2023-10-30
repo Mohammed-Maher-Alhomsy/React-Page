@@ -2,36 +2,22 @@ import React, { useEffect, useState } from "react";
 // import { useLocation, useNavigate } from "react-router-dom/dist";
 
 const Status = () => {
-  // const navigate = useNavigate();
-  // const location = useLocation();
   const [active, setActive] = useState(null);
-
-  // const params = new URLSearchParams(location.search);
-  // const currentStatusID = params.get("status");
-
-  // const clickHandler = () => {
-  //   params.set("status", id);
-  //   navigate({ search: params.toString() });
-  // };
-
-  // useEffect(() => {
-  //   setActive(currentStatusID);
-  // }, [currentStatusID]);
   const [status, setStatus] = useState([]);
+
   useEffect(() => {
-    const getStatus = async () => {
-      try {
-        const response = await fetch(
-          "https://jira-test.innovura.io/rest/community/1.0/portal/ISD/statuses"
-        );
-        console.log(response);
-        const status = response?.data.statusSummary;
-        setStatus(status);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+    const fetchStatus = async () => {
+      const res = await fetch(
+        "https://jira-test.innovura.io/rest/community/1.0/portal/ISD/statuses"
+      );
+
+      const { statusSummary } = await res.json();
+
+      console.log(statusSummary);
+      setStatus(statusSummary);
     };
-    getStatus();
+
+    fetchStatus();
   }, []);
 
   return (
@@ -42,9 +28,10 @@ const Status = () => {
             active === item?.statusModel.id ? "bg-light rounded p-2" : ""
           }`}
           // onClick={clickHandler}
+          key={item}
         >
           <a
-            href="#"
+            href="/#"
             className={` text-decoration-none ${
               active === item?.statusModel.id ? "text-dark" : "text-primary"
             } mr-4`}
@@ -53,7 +40,7 @@ const Status = () => {
           </a>
 
           <a
-            href="#"
+            href="/#"
             className={` text-decoration-none ${
               active === item?.statusModel.id ? "text-dark" : "text-secondary"
             }`}
